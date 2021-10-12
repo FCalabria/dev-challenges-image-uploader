@@ -1,15 +1,9 @@
 import React from "react";
 import Card from "./components/Card"
 import InputFile from "./components/InputFile"
+import DropFile from "./components/DropFile"
 
 function App() {
-  // const [data, setData] = React.useState(null);
-
-  // React.useEffect(() => {
-  //   fetch("/ping")
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data.message));
-  // }, []);
   function uploadFile(file) {
     const formData = new FormData();
 
@@ -24,7 +18,14 @@ function App() {
   }
 
   function cardContent () {
-    return <InputFile onChange={uploadFile}>Choose a file</InputFile>
+    return (
+      <div className="space-y-8 text-xs text-gray-400 text-center">
+        <p className="text-gray-500 text-xxs">File should be Jpeg, Png...</p>
+        <DropFile onChange={uploadFile}>Drag & Drop your image here</DropFile>
+        <p>Or</p>
+        <InputFile onChange={uploadFile}>Choose a file</InputFile>
+      </div>
+    )
   }
   return (
     <div className="flex items-center justify-center h-screen p-5">

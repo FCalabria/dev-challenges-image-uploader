@@ -6,7 +6,10 @@ module.exports = {
       fontFamily: {
         sans: ['Monserrat', 'Helvetica', 'Arial', 'sans-serif'],
         rounded: ['Poppins, sans-serif']
-      }
+      },
+      fontSize: {
+        xxs: ['.65rem', '1rem'],
+      },
     },
   },
   variants: {

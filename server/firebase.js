@@ -18,7 +18,7 @@ class Firebase {
   upload(file, name) {
     const fileRef = ref(this.storage, name)
     return uploadBytes(fileRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!', snapshot);
+      console.log('Uploaded file', snapshot);
     })
   }
 }

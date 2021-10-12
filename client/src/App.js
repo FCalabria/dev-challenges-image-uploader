@@ -10,8 +10,17 @@ function App() {
   //     .then((res) => res.json())
   //     .then((data) => setData(data.message));
   // }, []);
-  function uploadFile(e) {
-    console.log('upload', e)
+  function uploadFile(file) {
+    const formData = new FormData();
+
+    formData.append("file", file, file.name);
+
+    fetch(`${process.env.REACT_APP_API_URL}/image`, {
+      method: 'POST',
+      body: formData,
+    })
+    .then(() => console.log('uploaded'))
+    .catch(error => console.log('failed', error))
   }
 
   function cardContent () {

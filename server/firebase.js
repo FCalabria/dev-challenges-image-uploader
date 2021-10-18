@@ -15,11 +15,9 @@ class Firebase {
     const firebaseApp = initializeApp(firebaseConfig);
     this.storage = getStorage(firebaseApp);
   }
-  upload(file, name) {
+  upload(file, name, metadata) {
     const fileRef = ref(this.storage, name)
-    return uploadBytes(fileRef, file).then((snapshot) => {
-      console.log('Uploaded file', snapshot);
-    })
+    return uploadBytes(fileRef, file, metadata)
   }
 }
 

@@ -16,15 +16,26 @@ app.get("/ping", (req, res) => {
 });
 
 app.post("/image", (req, res) => {
-  // TODO: limit size
-  return fb.upload(req.files.file.data, req.files.file.name)
-    .then(() => {
+  const file = req.files.file
+  return fb.upload(file.data, file.name, {
+    contentType: file.mimetype
+  })
+    .then(snapshot => {
       res.status(200);
       res.send()
     })
     .catch(error => {
-      console.log(error)
-      res.status(error.error.code)
+      console.log('SERVER  |  app.post  |  error', error)
+      let code, message
+      try {
+        // TODO: more verbose error message
+        const serverError = JSON.parse(error.customData.serverResponse).error
+        code = serverError.code
+        message = serverError.message
+      } catch (error) {
+        code = 500
+      }
+      res.status(code)
       res.send()
     })
 })

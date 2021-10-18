@@ -13,7 +13,13 @@ function App() {
       method: 'POST',
       body: formData,
     })
-    .then(() => console.log('uploaded'))
+    .then(response => {
+      if (!response.ok) {
+        // TODO: error management
+        throw new Error (response.status)
+      }
+      console.log('uploaded')
+    })
     .catch(error => console.log('failed', error))
   }
 

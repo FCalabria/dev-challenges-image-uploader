@@ -21,8 +21,16 @@ app.post("/image", (req, res) => {
     contentType: file.mimetype
   })
     .then(snapshot => {
+      const name = snapshot.metadata.fullPath
+      console.log('MC  |  app.post  |  snapshot', snapshot)
       res.status(200);
-      res.send()
+      let fileUrl
+      fb.get(name).then(url => {
+        fileUrl = url
+      })
+      .finally(() => {
+        res.json({url: fileUrl})
+      })
     })
     .catch(error => {
       console.log('SERVER  |  app.post  |  error', error)

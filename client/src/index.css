@@ -10,3 +10,6 @@ body {
 a {
   @apply font-bold underline;
 }
+.uploaded-image {
+  max-height: 50vh;
+}

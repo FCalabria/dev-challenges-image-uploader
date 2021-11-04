@@ -10,6 +10,15 @@ module.exports = {
       fontSize: {
         xxs: ['.65rem', '1rem'],
       },
+      keyframes: {
+        progress :{
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(calc(20rem - 6rem))' },
+        }
+      },
+      animation: {
+        progress: 'progress 2s ease-in-out infinite',
+      },
     },
   },
   variants: {

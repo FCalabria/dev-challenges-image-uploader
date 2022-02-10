@@ -1,25 +1,13 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('uploadImage', (dragNDrop, size) => {
+  const imageData = {
+    contents: Cypress.Buffer.from('file contents'),
+    fileName: 'file.png',
+    mimeType: 'image/png',
+    lastModified: Date.now(),
+  }
+  const inputText = dragNDrop ? 'Drag & Drop your image here' : 'Choose a file'
+  const action = dragNDrop ? 'drag-drop' : 'select'
+  return cy.contains(inputText).selectFile(imageData, {
+    action
+  })
+})
